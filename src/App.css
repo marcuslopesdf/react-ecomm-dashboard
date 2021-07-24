@@ -7,6 +7,13 @@
   pointer-events: none;
 }
 
+.delete { 
+  color: #FFF;
+  background-color: #dc3545;
+  border-radius:5px; 
+  padding:5px;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -16,6 +23,7 @@
 .navbar_wrapper a{
   padding-left: 30px;
 }
+
 
 .App-header {
   background-color: #282c34;
