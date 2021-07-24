@@ -21,7 +21,7 @@ function Register()
     async function signUp()
     {
         let item = {name,password,email}
-        console.warn(item);
+        // console.warn(item);
 
         let result= await fetch("http://backend/api/register", {
             method:'POST',
