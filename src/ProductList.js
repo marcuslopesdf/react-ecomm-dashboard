@@ -1,33 +1,43 @@
 import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import { Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function ProductList() {
   const [data, setData] = useState([]);
-  const deleteStyle = { 
-    color: '#FFF',
-    backgroundColor: '#dc3545',
-    borderRadius:'5px', 
-    padding:'5px',
-    cursor: 'pointer'
-  }
+  const deleteStyle = {
+    color: "#FFF",
+    backgroundColor: "#dc3545",
+    borderRadius: "5px",
+    padding: "5px",
+    cursor: "pointer",
+  };
+
+  const updateStyle = {
+    color: "#FFF",
+    backgroundColor: "green",
+    borderRadius: "5px",
+    padding: "5px",
+    cursor: "pointer",
+    marginLeft: "10px",
+  };
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(async () => {
     getData();
   }, []);
 
-  async function deleteOperation(id){
-    let result = await fetch("http://backend/api/delete/"+id, {
-      method:'DELETE'
-    })
-    result=await result.json();
-    console.log(result)
+  async function deleteOperation(id) {
+    let result = await fetch("http://backend/api/delete/" + id, {
+      method: "DELETE",
+    });
+    result = await result.json();
+    console.log(result);
     getData();
   }
   console.log(data);
 
-  async function getData(){
+  async function getData() {
     let result = await fetch("http://backend/api/list");
     result = await result.json();
     setData(result);
@@ -61,7 +71,15 @@ function ProductList() {
                 />
               </td>
               <td>
-                <span onClick={()=>deleteOperation(item.id)} style={deleteStyle}>Delete</span>
+                <span
+                  onClick={() => deleteOperation(item.id)}
+                  style={deleteStyle}
+                >
+                  Delete
+                </span>
+                <Link to={"update/"+item.id}> 
+                  <span style={updateStyle}>Update</span>
+                </Link>
               </td>
             </tr>
           ))}
